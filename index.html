@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Coding Assesment L2 boilerplate</title>
+</head>
+
+<body>
+    <header>
+        <div class="logocontainer">
+            <img src="assets/MeubelHouse.png" height="32" width="50">
+            <h3>Marmeto</h3>
+        </div>
+        <button class="hamburger" id="hamburger">
+            &#9776; 
+        </button>
+        <div class="navigations" id="navigations">
+        <div class="navLinks" id="navlinks">
+            <p>Home</p>
+            <p>Shop</p>
+            <p>About</p>
+            <p>Contact</p>
+        </div>
+        <div class="sidebuttons" id="sidebuttons">
+            <img src="assets/search.png" height="22.17" width="22.17">
+            <img src="assets/heart.png" height="22.17" width="22.17">
+            <img src="assets/cart.png" height="22.17" width="22.17">
+        </div>
+    </div>
+    </header>
+
+    <div class="hero">
+        <div class="content">
+            <img src="assets/MeubelHouse.png" height="32" width="50">
+            <h2>Cart</h2>
+            <div class="sub-content">
+                <p>Home</p>
+                <p>></p>
+                <p>Cart</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-content-area">
+        <div class="cart-table">
+            <div class="cart-table-heading">
+                <p>Product</p>
+                <p>Price</p>
+                <p>Quantity</p>
+                <p>Subtotal</p>
+            </div>
+            <div class="cart">
+                <div id="cart-items"></div>
+            </div>
+        </div>
+
+        <div class="cart-totals">
+            <h2>Cart Totals</h2>
+            <div class="cart-totals-subitem">
+                <span>Subtotal</span>
+                <span class="fontsubtotal" id="cart-subtotal"></span>
+            </div>
+            <div class="cart-totals-subitem">
+                <span>Total</span>
+                <span class="fonttotal" id="cart-total-price"></span>
+            </div>
+
+            <button class="cartbutton">Check out</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-item">
+            <img src="assets/trophy 1.png" height="40" width="40">
+            <div>
+                <h3>High Quality</h3>
+                <p>crafted from top materials</p>
+            </div>
+        </div>
+
+        <div class="footer-item">
+            <img src="assets/guarantee.png">
+            <div>
+                <h3>Warranty Protection</h3>
+                <p>Over 2 years</p>
+            </div>
+        </div>
+
+        <div class="footer-item">
+            <img src="assets/Vector (4).png">
+            <div>
+                <h3>Free Shipping</h3>
+                <p>Order over 150 $</p>
+            </div>
+        </div>
+
+        <div class="footer-item">
+            <img src="assets/Vector (5).png">
+            <div>
+                <h3>24 / 7 Support</h3>
+                <p>Dedicated support</p>
+            </div>
+        </div>
+    </footer>
+    <script src="./script.js"></script>
+</body>
+
+</html>
