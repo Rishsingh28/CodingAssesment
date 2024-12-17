@@ -1,79 +1,85 @@
-const cartItemsContainer = document.getElementById("cart-items");
-const cartTotalPriceElement = document.getElementById("cart-total-price");
-const subtotalelement = document.getElementById("cart-subtotal");
+const API_URL = "https://cdn.shopify.com/s/files/1/0883/2188/4479/files/apiCartData.json?v=1728384889";
 
+// Function to fetch cart items
+const fetchCartItems = async () => {
+    try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
 
-async function fetchCartData() {
-  try {
-    const response = await fetch(
-      "https://cdn.shopify.com/s/files/1/0883/2188/4479/files/apiCartData.json?v=1728384889"
-    );
-    if (!response.ok) {
-      throw new Error("Failed to fetch cart data");
+        if (data.items && data.items.length > 0) {
+            const item = data.items[0]; // Get the first item
+            const pricePerItem = item.presentment_price; // Price per item
+
+            // Get the cart items container
+            const cartItemsContainer = document.getElementById("cart-items");
+
+            // Clear existing content
+            cartItemsContainer.innerHTML = "";
+
+            // Create table row
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td style="text-align: left;">
+                    <img src="${item.image}" alt="${item.title}">
+                </td>
+                <td style="color:#9F9F9F;">${item.title}</td>
+                <td style="color:#9F9F9F;">Rs ${pricePerItem.toFixed(2)}</td>
+                <td>
+                    <input 
+                        type="text" 
+                        value="1" 
+                        id="quantity-input" 
+                        min="1" 
+                    />
+                </td>
+                <td id="subtotal-cell">Rs ${pricePerItem.toFixed(2)}</td>
+                <td>
+                    <img src="delete.png" alt="Delete" class="delete-icon">
+                </td>
+            `;
+            cartItemsContainer.appendChild(row);
+
+            // Add functionality for quantity input
+            handleQuantityChange(pricePerItem);
+        } else {
+            console.error("No items found in the cart data.");
+        }
+    } catch (error) {
+        console.error("Failed to fetch cart items:", error);
     }
-    const cartData = await response.json();
-    renderCart(cartData);
-    setupQuantityListeners(cartData); 
-  } catch (error) {
-    console.error("Error fetching cart data:", error);
-  }
-}
+};
 
+// Function to handle quantity changes
+const handleQuantityChange = (pricePerItem) => {
+    const quantityInput = document.getElementById("quantity-input");
+    const subtotalCell = document.getElementById("subtotal-cell");
 
-function renderCart(cartData) {
-  cartItemsContainer.innerHTML = "";
-  let totalPrice = 0;
+    quantityInput.addEventListener("input", () => {
+        // Ensure the input value is valid
+        const quantity = Math.max(parseInt(quantityInput.value, 10) || 1, 1); // Default to 1 if invalid
+        quantityInput.value = quantity; // Enforce valid value in input field
 
-  cartData.items.forEach((item, index) => {
-    const itemTotalPrice = item.price * item.quantity;
-    totalPrice += itemTotalPrice;
+        // Calculate and update the subtotal
+        const newSubtotal = pricePerItem * quantity;
+        subtotalCell.innerText = `Rs ${newSubtotal.toFixed(2)}`;
 
-    cartItemsContainer.innerHTML += `
-      <div class="cart-item">
-        <img class="item-image" src="${item.image}" alt="${item.title}">
-        <p class="cart-item-title">${item.title}</p>
-        <p class="cart-item-price">₹${item.price}</p>
-        <div class="cart-item-quantity">
-          <input type="number" min="1" value="${item.quantity}" data-index="${index}" class="quantity-input">
-        </div>
-        <p>₹<span id="item-total-${index}">${itemTotalPrice}</span></p>
-      </div>
-    `;
-  });
+        // Update totals in "Cart Totals" section
+        updateCartTotals(newSubtotal);
+    });
+};
 
-  cartTotalPriceElement.innerText = `₹${totalPrice}`;
-  subtotalelement.innerText = `₹${totalPrice}`;
-}
+// Function to update cart totals
+const updateCartTotals = (newSubtotal) => {
+    const subtotalElement = document.querySelector(".Subtotal span");
+    const totalElement = document.querySelector(".Total span");
 
+    if (subtotalElement && totalElement) {
+        subtotalElement.innerText = `Rs ${newSubtotal.toFixed(2)}`;
+        totalElement.innerText = `Rs ${newSubtotal.toFixed(2)}`;
+    } else {
+        console.error("Subtotal or Total elements not found.");
+    }
+};
 
-function updateQuantity(event, cartData) {
-  const index = event.target.dataset.index;
-  const newQuantity = parseInt(event.target.value, 10);
-
-  if (newQuantity >= 1) {
-    cartData.items[index].quantity = newQuantity;
-    renderCart(cartData);
-    setupQuantityListeners(cartData);
-  }
-}
-
-
-function setupQuantityListeners(cartData) {
-  const quantityInputs = document.querySelectorAll(".quantity-input");
-  quantityInputs.forEach((input) => {
-    input.addEventListener("input", (event) => updateQuantity(event, cartData));
-  });
-}
-
-
-async function init() {
-  const cartData = await fetchCartData();
-  if (cartData) {
-    renderCart(cartData);
-    setupQuantityListeners(cartData);
-  }
-}
-
-init();
-
-
+// Fetch items on page load
+window.onload = fetchCartItems;
