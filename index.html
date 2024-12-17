@@ -5,103 +5,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    <title>Coding Assesment L2 boilerplate</title>
+    <title>Coding Assessment L2 Boilerplate</title>
 </head>
 
 <body>
-    <header>
-        <div class="logocontainer">
-            <img src="assets/MeubelHouse.png" height="32" width="50">
-            <h3>Marmeto</h3>
+    <div class="body">
+        <div class="Navbar">
+            <div class="logo-container">
+              <img src="Logo.png" alt="Logo">
+              <h1>Marmeto</h1>
+            </div>
+            
+            <input type="checkbox" class="menu-toggle" id="menu-toggle">
+            <label for="menu-toggle" class="hamburger">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </label>
+            
+            <ul class="menu">
+              <li>Home</li>
+              <li>Shop</li>
+              <li>About</li>
+              <li>Contact</li>
+              <li class="close-btn">
+                <label for="menu-toggle" class="close-icon">X</label> <!-- Close icon -->
+              </li>
+              <div class="icons">
+                <li><img src="search.png" alt="Search Icon"></li>
+                <li><img src="heart.png" alt="Heart Icon"></li>
+                <li><img src="shopping-cart.png" alt="Shopping Cart Icon"></li>
+              </div>
+            </ul>
+          </div>
+          
+          
+        <div class="Home-cart">
+            <img src="Logo.png" alt="Logo" style="height: 7rem;">
+            <h1 style="font-size: 54px; margin-top: -1rem;">Cart</h1>
+            <h3>Home      ><span style="color: #656262; padding-left: 5px;">Cart</span></h3>
         </div>
-        <button class="hamburger" id="hamburger">
-            &#9776; 
-        </button>
-        <div class="navigations" id="navigations">
-        <div class="navLinks" id="navlinks">
-            <p>Home</p>
-            <p>Shop</p>
-            <p>About</p>
-            <p>Contact</p>
-        </div>
-        <div class="sidebuttons" id="sidebuttons">
-            <img src="assets/search.png" height="22.17" width="22.17">
-            <img src="assets/heart.png" height="22.17" width="22.17">
-            <img src="assets/cart.png" height="22.17" width="22.17">
+        <img src="back.jpg" alt="Background Image" style="height: 25rem; width: 100%; opacity: 0.5; object-fit: cover; filter: blur(3px);">
+        <div class="section">
+            <div>
+                <table>
+                    <thead style="background-color: #F9F1E7;">
+                        <tr>
+                            <th></th>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Sub-Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items">
+                        <!-- Dynamic Content  -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="container">
+                <h1>Cart Totals</h1>
+                <h3 class="Subtotal">Subtotal<span>Rs 250000.00</span></h3>
+                <h3 class="Total">Total<span>Rs 250000.00</span></h3>
+                <button>Check Out</button>
+            </div>
         </div>
     </div>
-    </header>
-
-    <div class="hero">
-        <div class="content">
-            <img src="assets/MeubelHouse.png" height="32" width="50">
-            <h2>Cart</h2>
-            <div class="sub-content">
-                <p>Home</p>
-                <p>></p>
-                <p>Cart</p>
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div style="display: flex; text-align: left;">
+            <img src="trophy.png" alt="trophy" style="height:5rem">
+                <div>
+                    <h2>High Quality</h2>
+                    <h3 style="color: #898989;">Crafted from top material</h3>
+                </div>           
             </div>
-        </div>
-    </div>
-
-    <div class="cart-content-area">
-        <div class="cart-table">
-            <div class="cart-table-heading">
-                <p>Product</p>
-                <p>Price</p>
-                <p>Quantity</p>
-                <p>Subtotal</p>
+            <div style="display: flex; text-align: left;">
+            <img src="warranty.png" alt="warranty" style="height:5rem">
+                <div>
+                    <h2>Warrenty Protection</h2>
+                    <h3 style="color: #898989;">Over 2 years</h3>
+                </div>
             </div>
-            <div class="cart">
-                <div id="cart-items"></div>
+            <div style="display: flex; text-align: left;">
+            <img src="delivery-in-hand.png" alt="delivery-in-hand" style="height:5rem">
+                <div>
+                    <h2>Free Shipping</h2>
+                    <h3 style="color: #898989;">Order over 150 $</h3>
+                </div>
             </div>
-        </div>
-
-        <div class="cart-totals">
-            <h2>Cart Totals</h2>
-            <div class="cart-totals-subitem">
-                <span>Subtotal</span>
-                <span class="fontsubtotal" id="cart-subtotal"></span>
-            </div>
-            <div class="cart-totals-subitem">
-                <span>Total</span>
-                <span class="fonttotal" id="cart-total-price"></span>
-            </div>
-
-            <button class="cartbutton">Check out</button>
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer-item">
-            <img src="assets/trophy 1.png" height="40" width="40">
-            <div>
-                <h3>High Quality</h3>
-                <p>crafted from top materials</p>
-            </div>
-        </div>
-
-        <div class="footer-item">
-            <img src="assets/guarantee.png">
-            <div>
-                <h3>Warranty Protection</h3>
-                <p>Over 2 years</p>
-            </div>
-        </div>
-
-        <div class="footer-item">
-            <img src="assets/Vector (4).png">
-            <div>
-                <h3>Free Shipping</h3>
-                <p>Order over 150 $</p>
-            </div>
-        </div>
-
-        <div class="footer-item">
-            <img src="assets/Vector (5).png">
-            <div>
-                <h3>24 / 7 Support</h3>
-                <p>Dedicated support</p>
+            <div style="display: flex; text-align: left;">
+            <img src="customer-care.png" alt="customer-care" style="height:5rem">
+                <div>
+                    <h2>24/7 Support</h2>
+                    <h3 style="color: #898989;">Dedicated Support</h3>
+                </div>
             </div>
         </div>
     </footer>
